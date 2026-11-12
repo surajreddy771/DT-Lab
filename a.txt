@@ -1,0 +1,109 @@
+path C:\Program Files\Git\cmd
+git config --global user.name ''
+git config --global user.email ''
+git config --global --list
+git init
+git status
+git commit -m "Initial commit"
+git branch
+git branch lab
+git switch lab
+git merge lab
+git reomote add origin https://github.com/surajreddy771/DT-Lab.git
+git remote set-url origin https://github.com/surajreddy771/DT-Lab.git
+git remote -v
+git push -u origin master
+git pull origin master
+
+
+java -jar jenkins.war --enable-future-java
+http://localhost:8080/jnlpJars/agent.jar
+
+docker start <container>
+docker run -it <image>
+
+FROM nginx
+RUN apt update && apt install -y nginx
+WORKDIR /usr/share/nginx/html
+COPY index.html .
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+docker build -t <img> .
+dcoker run -p 8080:80 <img>
+
+winget install Kubernetes.minikube
+winget install Kubernetes.kubectl
+winget install Kubernetes.kind
+minikube version
+minikube start --driver=docker
+kubectl version
+kubectl get nodes
+kubectl cluster-info
+kubectl create deployment app --image=nginx
+kubectl get pods
+kubectl get deployments
+kubectl expose deployment app --type=NodePort --port=80
+kubectl get services
+kubectl port-forward service/app 8080:80
+kubectl scale deployment app --replicas=2
+kubectl get pods
+kubectl delete service app 
+kubectl delete deployment app
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+  - role: control-plane
+
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+
+kind create cluster --name lab --config kind.yaml --wait 60s
+kubectl applu -f nginx.yaml
+
+sudo apt install puppet-agent
+puppet --version
+sudo apt install puppetserver
+sudo systemctl start puppetserver
+sudo systemctl status puppetserver
+sudo puppet config print server --section agent
+echo "127.0.0.1 puppet" | sudo tee -a /etc/hosts
+getent hosts puppet
+sudo ss -ltnp | grep 8140
+nano first.pp
+file { '/tmp/puppet-demo': ensure => directory, }
+sudo puppet apply first.pp
+ls -ld /tmp/puppet-demo
+sudo puppet apply first.pp
+sudo puppet agent --test
+
+mkdir -p ~/puppet-blocks-lab/modules/webdemo/manifests
+cd ~/puppet-blocks-lab
+nano modules/webdemo/manifests/init.pp
+class webdemo {
+  file { '/tmp/puppet-blocks-demo.txt':
+    ensure  => file,
+    content => upcase('puppet blocks demonstration'),
+  }
+}
+nano site.pp
+include webdemo
+sudo puppet apply --modulepath=modules site.pp
+cat /tmp/puppet-blocks-demo.txt
+sudo puppet apply --modulepath=modules site.pp
+
+
+
